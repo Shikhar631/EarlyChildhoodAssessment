@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body class="bg-yellow-100 flex flex-col items-center min-h-screen">
+    <div class="w-full py-6 flex justify-between items-center px-6">
+        <img src="{{ url_for('static', filename='images/logo.jpeg') }}" alt="Logo" class="w-20">
+    </div>
+    <div class="flex flex-col md:flex-row items-center justify-center w-4/5 max-w-6xl gap-10 py-10">
+        <div class="w-full md:w-1/2 flex justify-center">
+            <img src="{{ url_for('static', filename='images/login.png') }}" alt="auth-image" class="w-96 h-96 object-cover rounded-lg">
+        </div>
+        <div class="w-full md:w-2/5 bg-white p-8 rounded-lg shadow-lg text-center">
+            <div id="loginBox">
+                <h2 class="text-2xl font-bold">Login</h2>
+                <p class="text-gray-600 mb-4">Login to continue using the app</p>
+                <form id="loginForm" class="space-y-4">
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required class="w-full p-3 border border-gray-300 rounded-lg">
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required class="w-full p-3 border border-gray-300 rounded-lg">
+                    <a href="#" class="text-sm text-gray-500">Forgot Password?</a>
+                    <button type="submit" class="w-full p-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600">Login</button>
+                </form>
+                <p class="mt-4">Don't have an account? <a href="#" id="showRegister" class="text-yellow-500">Register</a></p>
+            </div>
+            <div id="registerBox" class="hidden">
+                <h2 class="text-2xl font-bold">Register</h2>
+                <p class="text-gray-600 mb-4">Enter your personal information</p>
+                <form id="registerForm" class="space-y-4">
+                    <input type="text" id="username" placeholder="Enter your username" required class="w-full p-3 border border-gray-300 rounded-lg">
+                    <input type="email" id="registerEmail" placeholder="Enter your email" required class="w-full p-3 border border-gray-300 rounded-lg">
+                    <input type="password" id="registerPassword" placeholder="Enter your password" required class="w-full p-3 border border-gray-300 rounded-lg">
+                    <input type="password" id="confirmPassword" placeholder="Confirm your password" required class="w-full p-3 border border-gray-300 rounded-lg">
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="text" id="childName" placeholder="Child Name" required class="p-3 border border-gray-300 rounded-lg">
+                        <input type="number" id="childAge" placeholder="Age" required class="p-3 border border-gray-300 rounded-lg">
+                        <input type="text" id="childGender" placeholder="Gender" required class="p-3 border border-gray-300 rounded-lg">
+                        <input type="text" id="birthPlace" placeholder="Place of Birth" required class="p-3 border border-gray-300 rounded-lg">
+                    </div>
+                    <button type="submit" class="w-full p-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600">Register</button>
+                </form>
+                <p class="mt-4">Already have an account? <a href="#" id="showLogin" class="text-yellow-500">Login</a></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("#showRegister").click(function (e) {
+                e.preventDefault();
+                $("#loginBox").hide();
+                $("#registerBox").removeClass("hidden");
+            });
+        
+            $("#showLogin").click(function (e) {
+                e.preventDefault();
+                $("#registerBox").addClass("hidden");
+                $("#loginBox").show();
+            });
+        
+            $("#registerForm").submit(function (event) {
+                event.preventDefault();
+        
+                let password = $("#registerPassword").val().trim();
+                let confirmPassword = $("#confirmPassword").val().trim();
+        
+                if (password !== confirmPassword) {
+                    alert("Passwords do not match!");
+                    return;
+                }
+        
+                let userData = {
+                    username: $("#username").val().trim(),
+                    email: $("#registerEmail").val().trim(),
+                    password: password,
+                    name: $("#childName").val().trim(),
+                    age: parseInt($("#childAge").val().trim()),
+                    gender: $("#childGender").val().trim(),
+                    placeofbirth: $("#birthPlace").val().trim()
+                };
+        
+                $.ajax({
+                    url: "http://localhost:5000/registerapi",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify(userData),
+                    success: function (response) {
+                        alert(response.message);
+                        $("#registerBox").addClass("hidden");
+                        $("#loginBox").show();
+                    },
+                    error: function (xhr) {
+                        alert(xhr.responseJSON.message);
+                    }
+                });
+            });
+        
+            $("#loginForm").submit(function (event) {
+                event.preventDefault();
+                let loginData = {
+                    email: $("#loginEmail").val().trim(),
+                    password: $("#loginPassword").val().trim()
+                };
+                $.ajax({
+                    url: "http://localhost:5000/loginapi",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify(loginData),
+                    success: function (response) {
+                        alert(response.message);
+                        window.location.href = "/onboarding";
+                    },
+                    error: function (xhr) {
+                        alert(xhr.responseJSON.message);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

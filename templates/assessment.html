@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assessment</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        background-color: #f3f4f6; /* bg-gray-100 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background-image: url("/static/images/BG3.png");
+        background-size: cover;
+        background-position: center;
+      }
+      .logo-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 1rem;
+        border-bottom: 1px solid #d1d5db;
+      }
+      .logo {
+        width: 5rem;
+        height: auto;
+      }
+      .container-box {
+        width: 100%;
+        max-width: 750px; /* Reduced width */
+        background-color: white;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.511);
+        border-radius: 0.5rem; /* rounded-lg */
+        padding: 2rem; /* p-8 */
+        text-align: center;
+        position: relative;
+        margin-left: 25%;
+        margin-right: 25%;
+        align-items: center;
+      }
+      .question-image {
+        width: 18rem;
+        height: 18rem;
+        margin: auto;
+        margin-bottom: 1rem;
+      }
+      .button {
+        background-color: #ffa500;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        margin-top: 1rem;
+      }
+      .button:hover {
+        background-color: #ff8c00; /* hover:bg-blue-700 */
+      }
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+      .option-btn {
+        border: 2px solid #d1d5db;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+      }
+      .option-btn:hover {
+        border: 2px solid #ffa500; /* hover:bg-blue-700 */
+      }
+      .option-btn.selected {
+        border-color: #ffa500;
+        background-color: #fef3c7;
+      }
+      .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1.5rem;
+      }
+      .hidden {
+        display: none;
+      }
+      .back-btn {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: white;
+        color: #ffa500;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        text-decoration: none;
+        transition: background 0.3s;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.511);
+      }
+      .back-btn:hover {
+        background: #ffa500;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="back-btn">
+      <button onclick="window.history.back()">← Back</button>
+    </div>
+
+    <div id="start-container" class="container mx-auto p-4 text-center">
+      <div class="container-box">
+        <img
+          src="{{ url_for('static', filename='images/assessment.png') }}"
+          alt="Start Image"
+          class="question-image"
+        />
+        <h2 class="text-2xl font-bold">Welcome to the Assessment</h2>
+        <p class="text-lg mt-2">
+          Test your knowledge by answering the following questions. Click below
+          to start.
+        </p>
+        <button id="start-btn" class="button">Start Assessment</button>
+      </div>
+    </div>
+
+    <div id="quiz-container" class="container mx-auto p-4 hidden">
+      <div class="container-box text-center">
+        <h2 class="text-2xl font-bold" id="question-number"></h2>
+        <h3 class="text-xl font-semibold" id="question-text"></h3>
+        <img
+          id="question-image"
+          class="question-image"
+          src=""
+          alt="Question Image"
+        />
+        <div id="options-container" class="grid-container"></div>
+        <div class="navigation-buttons">
+          <button id="prev-btn" class="option-btn hidden">Previous</button>
+          <button id="next-btn" class="button">Next</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="result-container" class="hidden container-box text-center">
+      <img
+        id="result-image"
+        class="w-96 h-48 mx-auto"
+        src="{{ url_for('static', filename='images/result.jpeg') }}"
+        alt="Result Image"
+      />
+      <h2 id="score-text" class="text-2xl font-bold mt-4"></h2>
+      <div class="flex justify-center gap-4 mt-4">
+        <button onclick="window.location.href='/activity'" class="button">
+          Exit
+        </button>
+        <button onclick="restartQuiz()" class="button">Retry</button>
+      </div>
+    </div>
+
+    <script>
+      let questions = [];
+      let currentQuestionIndex = 0;
+      let score = 0;
+      let selectedAnswers = {};
+
+      function fetchQuestions() {
+        $.ajax({
+          url: "/get_questions",
+          method: "GET",
+          success: function (data) {
+            questions = data;
+          },
+          error: function (error) {
+            console.error("Error fetching questions:", error);
+          },
+        });
+      }
+
+      function startQuiz() {
+        $("#start-container").hide();
+        $("#quiz-container").show();
+        loadQuestion(0);
+      }
+
+      function loadQuestion(index) {
+        let question = questions[index];
+        $("#question-number").text(
+          `Question ${index + 1} of ${questions.length}`
+        );
+        $("#question-text").text(question.question);
+        $("#question-image").attr("src", question.image);
+
+        let optionsHtml = "";
+        question.choices.forEach((choice) => {
+          let selectedClass =
+            selectedAnswers[index] === choice ? "selected" : "";
+          optionsHtml += `<button class="option-btn ${selectedClass}" data-choice="${choice}">${choice}</button>`;
+        });
+        $("#options-container").html(optionsHtml);
+        $("#prev-btn").toggle(index > 0);
+        $("#next-btn").text(index === questions.length - 1 ? "Submit" : "Next");
+      }
+
+      $(document).ready(function () {
+        fetchQuestions();
+
+        $("#start-btn").click(function () {
+          startQuiz();
+        });
+
+        $(document).on("click", ".option-btn", function () {
+          $(".option-btn").removeClass("selected");
+          $(this).addClass("selected");
+          selectedAnswers[currentQuestionIndex] = $(this).attr("data-choice");
+        });
+
+        $("#prev-btn").click(function () {
+          if (currentQuestionIndex > 0) {
+            currentQuestionIndex--;
+            loadQuestion(currentQuestionIndex);
+          }
+        });
+
+        $("#next-btn").click(function () {
+          if (!selectedAnswers[currentQuestionIndex]) {
+            alert("Please select an option before proceeding.");
+            return;
+          }
+
+          if (currentQuestionIndex < questions.length - 1) {
+            currentQuestionIndex++;
+            loadQuestion(currentQuestionIndex);
+          } else {
+            score = questions.filter(
+              (q, i) => selectedAnswers[i] === q.answer
+            ).length;
+            $("#quiz-container").hide();
+            $("#score-text").text(`Your Score: ${score}`);
+            let scores = localStorage.getItem("scores");
+            scores = scores
+              ? JSON.parse(scores)
+              : { assessment: 0, pattern: 0, reading: 0 };
+            scores["assessment"] = Math.max(scores["assessment"], score);
+            localStorage.setItem("scores", JSON.stringify(scores));
+
+            $("#result-container").show();
+          }
+        });
+      });
+
+      function restartQuiz() {
+        selectedAnswers = {};
+        currentQuestionIndex = 0;
+        score = 0;
+        $("#result-container").hide();
+        $("#quiz-container").show();
+        loadQuestion(0);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dyslexia Detection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      body {
+        background-color: #f3f4f6; /* bg-gray-100 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background-image: url("static/images/BG3.png");
+        background-size: cover;
+        background-position: center;
+      }
+      .navbar {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.25rem 2.5rem; /* py-5 px-10 */
+        border-bottom: 1px solid #d1d5db; /* border-gray-300 */
+      }
+      .logo {
+        width: 5rem; /* w-20 */
+      }
+      .container {
+        width: 100%;
+        max-width: 32rem; /* Reduced width */
+        background-color: white;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.511);
+        border-radius: 0.5rem; /* rounded-lg */
+        padding: 2rem; /* p-8 */
+        text-align: center;
+        position: relative;
+        margin-left: 25%;
+        margin-right: 25%;
+        align-items: center;
+      }
+      .title {
+        font-size: 1.875rem; /* text-3xl */
+        font-weight: bold;
+        color: #1f2937; /* text-gray-800 */
+      }
+      .subtitle {
+        font-size: 1.25rem; /* text-xl */
+        margin-top: 1rem; /* mt-4 */
+      }
+      .activity-container {
+        display: flex;
+        justify-content: center;
+        gap: 2.5rem; /* gap-10 */
+        margin-top: 2rem; /* mt-8 */
+      }
+      .activity {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #ffa500; /* bg-orange-500 */
+        color: black;
+        padding: 1.5rem; /* px-6 py-4 */
+        border-radius: 0.5rem; /* rounded-lg */
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* shadow-lg */
+        transition: background-color 0.2s ease-in-out;
+        text-decoration: none;
+      }
+      .activity:hover {
+        background-color: #ff8c00; /* hover:bg-orange-600 */
+      }
+      .activity img {
+        width: 5rem; /* w-20 */
+        height: 5rem; /* h-20 */
+        border-radius: 0.375rem; /* rounded-md */
+      }
+      .activity span {
+        margin-top: 0.75rem; /* mt-3 */
+        font-size: 1.125rem; /* text-lg */
+        font-weight: 500;
+      }
+      .button {
+        margin-top: 1.5rem; /* mt-6 */
+        background-color: #ffa500; /* bg-blue-600 */
+        color: white;
+        padding: 0.75rem 1.5rem; /* px-6 py-3 */
+        border-radius: 0.5rem; /* rounded-lg */
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
+        transition: background-color 0.2s ease-in-out;
+        border: none;
+        cursor: pointer;
+      }
+      .button:hover {
+        background-color: #ff8c00; /* hover:bg-blue-700 */
+      }
+      .status-message {
+        margin-top: 0.75rem; /* mt-3 */
+        color: #374151; /* text-gray-700 */
+      }
+      .status-message.text-blue-600 {
+        color: #2563eb;
+      }
+      .status-message.text-green-600 {
+        color: #16a34a;
+      }
+      .status-message.text-red-600 {
+        color: #dc2626;
+      }
+      .back-btn {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: white;
+        color: #ffa500;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        text-decoration: none;
+        transition: background 0.3s;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.511);
+      }
+      .back-btn:hover {
+        background: #ffa500;
+        color: white;
+      }
+      .footer {
+        font-size: 14px;
+        color: #888;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="back-btn">
+      <button onclick="window.history.back()">← Back</button>
+    </div>
+    <div class="container">
+      <h1 class="title">Welcome to Eary Childhood Assessment</h1>
+      <p class="subtitle">Select an activity:</p>
+      <div class="activity-container">
+        <a href="/assessment" class="activity">
+          <img
+            src="{{ url_for('static', filename='images/activity1.png') }}"
+            alt="Assessment"
+          />
+          <span>Start Assessment</span>
+        </a>
+        <a href="/pattern" class="activity">
+          <img
+            src="{{ url_for('static', filename='images/activity2.png') }}"
+            alt="Pattern Recognition"
+          />
+          <span>Pattern Recognition</span>
+        </a>
+        <a href="/reading" class="activity">
+          <img
+            src="{{ url_for('static', filename='images/activity3.png') }}"
+            alt="Reading"
+          />
+          <span>Reading Assessment</span>
+        </a>
+      </div>
+      <button id="generate-report-btn" class="button">
+        Generate Assessment
+      </button>
+      <p id="status-message" class="status-message"></p>
+      <p style="color: #dc2626">
+        *Please attempt all the assessments for better feedback.
+      </p>
+    </div>
+
+    <script>
+      if (!localStorage.getItem("scores")) {
+        let defaultScores = {
+          assessment: 0,
+          pattern: 0,
+          reading: 0,
+        };
+        localStorage.setItem("scores", JSON.stringify(defaultScores));
+      }
+      $(document).ready(function () {
+        $("#generate-report-btn").click(function () {
+          $("#status-message")
+            .text("Generating report... Please wait.")
+            .removeClass("text-green-600 text-red-600")
+            .addClass("text-blue-600");
+          let scores = localStorage.getItem("scores")
+            ? JSON.parse(localStorage.getItem("scores"))
+            : { assessment: 0, pattern: 0, reading: 0 };
+          $.ajax({
+            url: "/generate-report",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({ scores: scores }),
+            xhrFields: {
+              responseType: "blob",
+            },
+            success: function (data, status, xhr) {
+              let filename = "Early_Childhood_Assessment_Report.pdf";
+              let blob = new Blob([data], {
+                type: xhr.getResponseHeader("Content-Type"),
+              });
+              let link = document.createElement("a");
+              link.href = window.URL.createObjectURL(blob);
+              link.download = filename;
+               document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+              // ✅ Clear localStorage after successful download
+              localStorage.removeItem("scores");
+
+              $("#status-message")
+                .text("Report generated successfully! Downloading...")
+                .removeClass("text-blue-600 text-green-600")
+                .addClass("text-green-600");
+            },
+            error: function () {
+              $("#status-message")
+                .text("Failed to generate report. Try again.")
+                .removeClass("text-blue-600 text-red-600")
+                .addClass("text-red-600");
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

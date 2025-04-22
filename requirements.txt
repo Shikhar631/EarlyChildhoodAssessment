@@ -1,0 +1,7 @@
+Flask
+matplotlib
+fpdf
+python-dotenv
+pymongo
+google-generativeai
+gunicorn

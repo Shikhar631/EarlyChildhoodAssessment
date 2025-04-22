@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pattern Assessment</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+      body {
+        background-color: #f3f4f6; /* bg-gray-100 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background-image: url("static/images/BG3.png");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 750px; /* Reduced width */
+        background-color: white;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.511);
+        border-radius: 0.5rem; /* rounded-lg */
+        padding: 2rem; /* p-8 */
+        text-align: center;
+        position: relative;
+        margin-left: 25%;
+        margin-right: 25%;
+        align-items: center;
+      }
+
+      .logo-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.25rem;
+        background-color: white;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo {
+        width: 5rem;
+        height: auto;
+      }
+
+      .heading {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      .subtext {
+        font-size: 1.125rem;
+        color: #6b7280; /* text-gray-600 */
+        margin-top: 0.5rem;
+      }
+
+      .btn {
+        margin-top: 1rem;
+        background-color: #ffa500; /* bg-yellow-500 */
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        transition: background-color 0.3s;
+      }
+
+      .btn:hover {
+        background-color: #ff8c00; /* hover:bg-yellow-600 */
+      }
+
+      .image {
+        width: 100%;
+        height: 16rem;
+        border-radius: 0.375rem;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .flex-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1.5rem;
+      }
+
+      .prev-btn {
+        display: none;
+      }
+
+      .option-btn {
+        border: 1px solid #9ca3af; /* border-gray-400 */
+        border-radius: 0.375rem;
+        padding: 0.5rem 1rem;
+        font-size: 1.125rem;
+        transition: all 0.3s;
+      }
+
+      .option-btn.selected {
+        border-color: #ffa500;
+        background-color: #fef3c7;
+      }
+
+      .option-btn:hover {
+        border: 2px solid #ffa500; /* hover:bg-blue-700 */
+      }
+
+      .exit-btn {
+        background-color: #dc2626; /* bg-red-500 */
+      }
+
+      .exit-btn:hover {
+        background-color: #b91c1c; /* hover:bg-red-600 */
+      }
+      .back-btn {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: white;
+        color: #ffa500;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        text-decoration: none;
+        transition: background 0.3s;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.511);
+      }
+      .back-btn:hover {
+        background: #ffa500;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="back-btn">
+      <button onclick="window.history.back()">← Back</button>
+    </div>
+    <!-- Front Page -->
+    <div id="front-page" class="container">
+      <h2 class="heading">Welcome to the Pattern Assessment</h2>
+      <p class="subtext">Test your ability to recognize patterns.</p>
+      <div class="mt-4">
+        <img
+          src="{{ url_for('static', filename='images/pattern.png') }}"
+          alt="Pattern Introduction"
+          class="image"
+        />
+      </div>
+      <button id="start-btn" class="btn">Start</button>
+    </div>
+
+    <!-- Quiz Container -->
+    <div id="quiz-container" class="container hidden">
+      <h2 class="heading">Pattern Assessment</h2>
+      <p id="instruction-text" class="text-lg font-bold text-gray-500 hidden">
+        Follow the instructions and answer correctly
+      </p>
+      <div
+        id="question-container"
+        class="text-lg font-semibold text-gray-700 mt-4"
+      ></div>
+      <div id="sequence" class="text-2xl font-bold my-4"></div>
+      <div
+        id="options-container"
+        class="flex flex-wrap justify-center gap-3"
+      ></div>
+      <div class="flex-container">
+        <button id="prev-btn" class="btn prev-btn">Previous</button>
+        <button id="next-btn" class="btn">Next</button>
+      </div>
+    </div>
+
+    <!-- Result Page -->
+    <div id="result-page" class="container hidden">
+      <h2 class="heading">Assessment Completed!</h2>
+      <p id="score-text" class="text-lg font-semibold text-gray-700 mt-2"></p>
+      <div class="mt-4">
+        <img
+          src="{{ url_for('static', filename='images/result.jpeg') }}"
+          alt="Score Result"
+          class="image"
+        />
+      </div>
+      <div class="flex-container">
+        <button id="restart-btn" class="btn">Restart</button>
+        <button
+          id="exit-btn"
+          class="btn exit-btn"
+          onclick="window.location.href='/activity'"
+        >
+          Exit
+        </button>
+      </div>
+    </div>
+
+    <script>
+      let questions = [];
+      let currentIndex = 0;
+      let selectedAnswers = {};
+      let score = 0;
+
+      function fetchQuestions() {
+        $.ajax({
+          url: "/get_patterns",
+          method: "GET",
+          success: function (data) {
+            questions = data;
+            loadQuestion(currentIndex);
+          },
+          error: function (error) {
+            console.error("Error fetching questions:", error);
+          },
+        });
+      }
+
+      function loadQuestion(index) {
+        let question = questions[index];
+        $("#question-container").text(question.question);
+        $("#sequence").html(question.sequence.join(" "));
+        $("#options-container").html("");
+
+        for (let key in question.options) {
+          let selectedClass = selectedAnswers[index] === key ? "selected" : "";
+          $("#options-container").append(
+            `<button class="option-btn ${selectedClass}" data-choice="${key}">${question.options[key]}</button>`
+          );
+        }
+
+        $("#prev-btn").toggle(index > 0);
+        $("#instruction-text").toggle(index === 0);
+        $("#next-btn").text(index === questions.length - 1 ? "Submit" : "Next");
+      }
+
+      $(document).ready(function () {
+        $("#start-btn").click(function () {
+          $("#front-page").hide();
+          $("#quiz-container").show();
+          fetchQuestions();
+        });
+
+        $(document).on("click", ".option-btn", function () {
+          $(".option-btn").removeClass("selected");
+          $(this).addClass("selected");
+          selectedAnswers[currentIndex] = $(this).data("choice");
+        });
+
+        $("#next-btn").click(function () {
+          if (!selectedAnswers[currentIndex]) {
+            alert("Please select an option before proceeding.");
+            return;
+          }
+
+          if (currentIndex < questions.length - 1) {
+            currentIndex++;
+            loadQuestion(currentIndex);
+          } else {
+            score = 0;
+            questions.forEach((q, i) => {
+              if (selectedAnswers[i] === q.answer) {
+                score++;
+              }
+            });
+
+            $("#quiz-container").hide();
+            $("#result-page").show();
+            let scores = localStorage.getItem("scores");
+            scores = scores
+              ? JSON.parse(scores)
+              : { assessment: 0, pattern: 0, reading: 0 };
+            scores["pattern"] = Math.max(scores["pattern"], score);
+            localStorage.setItem("scores", JSON.stringify(scores));
+
+            $("#score-text").text(
+              `You scored ${score} out of ${questions.length}`
+            );
+          }
+        });
+
+        $("#prev-btn").click(function () {
+          if (currentIndex > 0) {
+            currentIndex--;
+            loadQuestion(currentIndex);
+          }
+        });
+
+        $("#restart-btn").click(function () {
+          currentIndex = 0;
+          selectedAnswers = {};
+          score = 0;
+          $("#result-page").hide();
+          $("#front-page").show();
+        });
+      });
+    </script>
+  </body>
+</html>

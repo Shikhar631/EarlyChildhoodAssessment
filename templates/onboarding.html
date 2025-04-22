@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onboarding</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f3f4f6; /* bg-gray-100 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-image: url("static/images/BG3.png");
+        background-size: cover;
+        background-position: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 32rem; /* Reduced width */
+            background-color: white;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.511);
+            border-radius: 0.5rem; /* rounded-lg */
+            padding: 2rem; /* p-8 */
+            text-align: center;
+            position: relative;
+            margin-left: 25%;
+            margin-right: 25%;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e5e7eb; /* border-b */
+            padding-bottom: 1rem; /* pb-4 */
+            margin-bottom: 1.5rem; /* mb-6 */
+        }
+        .logo {
+            width: 4rem; /* Reduced logo size */
+        }
+        .slide img {
+            width: 18rem; /* Reduced image size */
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 0.5rem; /* rounded-lg */
+        }
+        .slide p {
+            font-size: 1rem; /* text-base */
+            color: #374151; /* text-gray-700 */
+            margin-top: 1rem; /* mt-4 */
+            text-align: left;
+        }
+        .button-container {
+            margin-top: 1.5rem; /* mt-6 */
+        }
+        .button {
+            width: 10rem; /* Reduced button width */
+            background-color: #ffa500; /* bg-yellow-500 */
+            color: white;
+            padding: 0.5rem 0;
+            border-radius: 0.375rem; /* rounded-md */
+            transition: background-color 0.2s ease-in-out;
+        }
+        .button:hover {
+            background-color: #ff8c00; /* hover:bg-yellow-600 */
+        }
+        .ml-2 {
+            margin-left: 0.5rem; /* ml-2 */
+        }
+        .hidden {
+            display: none;
+        }
+              .back-btn {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: white;
+        color: #ffa500;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        text-decoration: none;
+        transition: background 0.3s;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.511);
+      }
+      .back-btn:hover {
+        background: #ffa500;
+        color: white;
+      }
+    </style>
+</head>
+<body>
+       <div class="back-btn">
+            <button onclick="window.history.back()">← Back</button>
+        </div>
+    <div class="container">
+        <!-- <div class="header">
+            <img src="{{ url_for('static', filename='images/logo.jpeg') }}" alt="Logo" class="logo">
+        </div> -->
+        
+        <div class="slides">
+            <div class="slide" id="slide1">
+                <img src="{{ url_for('static', filename='images/onboarding1.png') }}" alt="Onboarding 1">
+                <p>Detection of any learning disorder or dyslexia at early stages of life with help of AI tools and holistic development of children.</p>
+                <div class="button-container">
+                    <button onclick="skipToLast()" class="button">Skip</button>
+                    <button onclick="nextSlide(2)" class="button ml-2">Next</button>
+                </div>
+            </div>
+            <div class="slide hidden" id="slide2">
+                <img src="{{ url_for('static', filename='images/onboarding2.png') }}" alt="Onboarding 2">
+                <p>Personalised Recommendations according to child’s condition and AI tools to help them.</p>
+                <div class="button-container">
+                    <button onclick="skipToLast()" class="button">Skip</button>
+                    <button onclick="nextSlide(3)" class="button ml-2">Next</button>
+                </div>
+            </div>
+            <div class="slide hidden" id="slide3">
+                <img src="{{ url_for('static', filename='images/onboarding3.png') }}" alt="Onboarding 3">
+                <p>Feedbacks after the assignment to help improve child’s performance.</p>
+                <div class="button-container">
+                    <button onclick="getStarted()" class="button">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function nextSlide(slideNumber) {
+            document.querySelectorAll('.slide').forEach(slide => slide.classList.add('hidden'));
+            document.getElementById(`slide${slideNumber}`).classList.remove('hidden');
+        }
+
+        function skipToLast() {
+            nextSlide(3);
+        }
+
+        function getStarted() {
+            alert("Welcome to the platform!");
+            window.location.href="/activity";
+        }
+    </script>
+</body>
+</html>

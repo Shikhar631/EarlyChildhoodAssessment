@@ -1,0 +1,1370 @@
+[{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe8f1"
+  },
+  "question": "What comes next?",
+  "sequence": [
+    "🔺",
+    "🔹",
+    "🔺",
+    "🔹",
+    "?"
+  ],
+  "options": {
+    "A": "🔺",
+    "B": "🔹",
+    "C": "🔻"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe8f2"
+  },
+  "question": "Select the missing number:",
+  "sequence": [
+    3,
+    6,
+    9,
+    12,
+    "?"
+  ],
+  "options": {
+    "A": 15,
+    "B": 16,
+    "C": 18
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe8f3"
+  },
+  "question": "Find the missing symbol:",
+  "sequence": [
+    "❤️",
+    "💙",
+    "💛",
+    "❤️",
+    "💙",
+    "?"
+  ],
+  "options": {
+    "A": "💛",
+    "B": "❤️",
+    "C": "💙"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe8f4"
+  },
+  "question": "Find the missing symbol:",
+  "sequence": [
+    "🌞",
+    "🌜",
+    "🌞",
+    "🌜",
+    "?"
+  ],
+  "options": {
+    "A": "🌞",
+    "B": "🌜",
+    "C": "⭐"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe8f5"
+  },
+  "question": "Select the next letter:",
+  "sequence": [
+    "X",
+    "V",
+    "T",
+    "R",
+    "?"
+  ],
+  "options": {
+    "A": "P",
+    "B": "Q",
+    "C": "O"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe8f6"
+  },
+  "question": "What comes next in the number series?",
+  "sequence": [
+    100,
+    90,
+    80,
+    70,
+    "?"
+  ],
+  "options": {
+    "A": 60,
+    "B": 50,
+    "C": 55
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe8f7"
+  },
+  "question": "Find the missing number:",
+  "sequence": [
+    1,
+    4,
+    9,
+    16,
+    "?"
+  ],
+  "options": {
+    "A": 25,
+    "B": 36,
+    "C": 49
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe8f8"
+  },
+  "question": "Which shape comes next?",
+  "sequence": [
+    "🔵",
+    "🔺",
+    "🔷",
+    "🔵",
+    "?"
+  ],
+  "options": {
+    "A": "🔺",
+    "B": "🔷",
+    "C": "🔵"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe8f9"
+  },
+  "question": "Select the next number:",
+  "sequence": [
+    21,
+    18,
+    15,
+    12,
+    "?"
+  ],
+  "options": {
+    "A": 9,
+    "B": 6,
+    "C": 3
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe8fa"
+  },
+  "question": "Find the missing emoji:",
+  "sequence": [
+    "🐶",
+    "🐱",
+    "🐰",
+    "🐶",
+    "?"
+  ],
+  "options": {
+    "A": "🐱",
+    "B": "🐰",
+    "C": "🐶"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe8fb"
+  },
+  "question": "What comes next in the pattern?",
+  "sequence": [
+    "⬆️",
+    "➡️",
+    "⬇️",
+    "⬅️",
+    "?"
+  ],
+  "options": {
+    "A": "⬆️",
+    "B": "➡️",
+    "C": "⬇️"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe8fc"
+  },
+  "question": "What comes next?",
+  "sequence": [
+    "🍎",
+    "🍌",
+    "🍎",
+    "🍌",
+    "?"
+  ],
+  "options": {
+    "A": "🍎",
+    "B": "🍌",
+    "C": "🍇"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe8fd"
+  },
+  "question": "Select the next number:",
+  "sequence": [
+    50,
+    45,
+    40,
+    35,
+    "?"
+  ],
+  "options": {
+    "A": 30,
+    "B": 25,
+    "C": 20
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe8fe"
+  },
+  "question": "Find the missing symbol:",
+  "sequence": [
+    "🟥",
+    "🟦",
+    "🟩",
+    "🟥",
+    "?"
+  ],
+  "options": {
+    "A": "🟦",
+    "B": "🟩",
+    "C": "🟥"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe8ff"
+  },
+  "question": "Which letter comes next?",
+  "sequence": [
+    "M",
+    "N",
+    "O",
+    "P",
+    "?"
+  ],
+  "options": {
+    "A": "Q",
+    "B": "R",
+    "C": "S"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe900"
+  },
+  "question": "Select the missing number:",
+  "sequence": [
+    81,
+    72,
+    63,
+    54,
+    "?"
+  ],
+  "options": {
+    "A": 45,
+    "B": 36,
+    "C": 27
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe901"
+  },
+  "question": "Find the missing shape:",
+  "sequence": [
+    "⬜",
+    "◼️",
+    "⬜",
+    "◼️",
+    "?"
+  ],
+  "options": {
+    "A": "⬜",
+    "B": "◼️",
+    "C": "🔲"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe902"
+  },
+  "question": "What comes next?",
+  "sequence": [
+    "🐥",
+    "🐣",
+    "🐥",
+    "🐣",
+    "?"
+  ],
+  "options": {
+    "A": "🐥",
+    "B": "🐣",
+    "C": "🐔"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe903"
+  },
+  "question": "Select the next number:",
+  "sequence": [
+    100,
+    95,
+    90,
+    85,
+    "?"
+  ],
+  "options": {
+    "A": 80,
+    "B": 75,
+    "C": 70
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe904"
+  },
+  "question": "Which shape comes next?",
+  "sequence": [
+    "🔺",
+    "🔻",
+    "🔺",
+    "🔻",
+    "?"
+  ],
+  "options": {
+    "A": "🔺",
+    "B": "🔻",
+    "C": "🔷"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe905"
+  },
+  "question": "Find the missing number:",
+  "sequence": [
+    7,
+    14,
+    21,
+    28,
+    "?"
+  ],
+  "options": {
+    "A": 35,
+    "B": 42,
+    "C": 49
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe906"
+  },
+  "question": "What comes next?",
+  "sequence": [
+    "🌲",
+    "🎄",
+    "🌲",
+    "🎄",
+    "?"
+  ],
+  "options": {
+    "A": "🌲",
+    "B": "🎄",
+    "C": "🌳"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe907"
+  },
+  "question": "Select the next letter:",
+  "sequence": [
+    "J",
+    "K",
+    "L",
+    "M",
+    "?"
+  ],
+  "options": {
+    "A": "N",
+    "B": "O",
+    "C": "P"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe908"
+  },
+  "question": "Find the missing emoji:",
+  "sequence": [
+    "🐸",
+    "🐢",
+    "🐸",
+    "🐢",
+    "?"
+  ],
+  "options": {
+    "A": "🐸",
+    "B": "🐢",
+    "C": "🐍"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe909"
+  },
+  "question": "Which number comes next?",
+  "sequence": [
+    11,
+    22,
+    33,
+    44,
+    "?"
+  ],
+  "options": {
+    "A": 55,
+    "B": 66,
+    "C": 77
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe90a"
+  },
+  "question": "Find the missing number:",
+  "sequence": [
+    2,
+    6,
+    12,
+    20,
+    "?"
+  ],
+  "options": {
+    "A": 30,
+    "B": 32,
+    "C": 36
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe90b"
+  },
+  "question": "What comes next?",
+  "sequence": [
+    "🦋",
+    "🐝",
+    "🦋",
+    "🐝",
+    "?"
+  ],
+  "options": {
+    "A": "🦋",
+    "B": "🐝",
+    "C": "🐞"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe90c"
+  },
+  "question": "Select the missing letter:",
+  "sequence": [
+    "X",
+    "W",
+    "V",
+    "U",
+    "?"
+  ],
+  "options": {
+    "A": "T",
+    "B": "S",
+    "C": "R"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe90d"
+  },
+  "question": "Which shape comes next?",
+  "sequence": [
+    "🔴",
+    "🟢",
+    "🔴",
+    "🟢",
+    "?"
+  ],
+  "options": {
+    "A": "🔴",
+    "B": "🟢",
+    "C": "🔵"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe90e"
+  },
+  "question": "Find the missing number:",
+  "sequence": [
+    4,
+    9,
+    16,
+    25,
+    "?"
+  ],
+  "options": {
+    "A": 36,
+    "B": 49,
+    "C": 64
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe90f"
+  },
+  "question": "What comes next?",
+  "sequence": [
+    "💡",
+    "🔦",
+    "💡",
+    "🔦",
+    "?"
+  ],
+  "options": {
+    "A": "💡",
+    "B": "🔦",
+    "C": "🕯️"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe910"
+  },
+  "question": "What comes next?",
+  "sequence": [
+    "🚗",
+    "🚕",
+    "🚗",
+    "🚕",
+    "?"
+  ],
+  "options": {
+    "A": "🚗",
+    "B": "🚕",
+    "C": "🚙"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe911"
+  },
+  "question": "Select the missing number:",
+  "sequence": [
+    6,
+    12,
+    18,
+    24,
+    "?"
+  ],
+  "options": {
+    "A": 30,
+    "B": 32,
+    "C": 36
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe912"
+  },
+  "question": "Find the missing symbol:",
+  "sequence": [
+    "☀️",
+    "🌧️",
+    "☀️",
+    "🌧️",
+    "?"
+  ],
+  "options": {
+    "A": "☀️",
+    "B": "🌧️",
+    "C": "🌈"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe913"
+  },
+  "question": "Which letter comes next?",
+  "sequence": [
+    "D",
+    "F",
+    "H",
+    "J",
+    "?"
+  ],
+  "options": {
+    "A": "K",
+    "B": "L",
+    "C": "M"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe914"
+  },
+  "question": "Select the missing number:",
+  "sequence": [
+    1000,
+    900,
+    800,
+    700,
+    "?"
+  ],
+  "options": {
+    "A": 600,
+    "B": 500,
+    "C": 400
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe915"
+  },
+  "question": "Find the missing shape:",
+  "sequence": [
+    "⭐",
+    "🌙",
+    "⭐",
+    "🌙",
+    "?"
+  ],
+  "options": {
+    "A": "⭐",
+    "B": "🌙",
+    "C": "☀️"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe916"
+  },
+  "question": "What comes next?",
+  "sequence": [
+    "⚽",
+    "🏀",
+    "⚽",
+    "🏀",
+    "?"
+  ],
+  "options": {
+    "A": "⚽",
+    "B": "🏀",
+    "C": "🏈"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe917"
+  },
+  "question": "Which shape comes next?",
+  "sequence": [
+    "🔶",
+    "🔷",
+    "🔶",
+    "🔷",
+    "?"
+  ],
+  "options": {
+    "A": "🔶",
+    "B": "🔷",
+    "C": "🔺"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe918"
+  },
+  "question": "Find the missing number:",
+  "sequence": [
+    2,
+    5,
+    10,
+    17,
+    "?"
+  ],
+  "options": {
+    "A": 26,
+    "B": 29,
+    "C": 31
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe919"
+  },
+  "question": "What comes next?",
+  "sequence": [
+    "🍂",
+    "❄️",
+    "🌸",
+    "☀️",
+    "?"
+  ],
+  "options": {
+    "A": "🍂",
+    "B": "❄️",
+    "C": "🌸"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe91a"
+  },
+  "question": "Select the next letter:",
+  "sequence": [
+    "G",
+    "I",
+    "K",
+    "M",
+    "?"
+  ],
+  "options": {
+    "A": "O",
+    "B": "P",
+    "C": "Q"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe91b"
+  },
+  "question": "Which number comes next?",
+  "sequence": [
+    13,
+    26,
+    39,
+    52,
+    "?"
+  ],
+  "options": {
+    "A": 65,
+    "B": 78,
+    "C": 91
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe91c"
+  },
+  "question": "Find the missing number:",
+  "sequence": [
+    4,
+    8,
+    12,
+    16,
+    "?"
+  ],
+  "options": {
+    "A": 20,
+    "B": 24,
+    "C": 28
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe91d"
+  },
+  "question": "What comes next?",
+  "sequence": [
+    "🎈",
+    "🎉",
+    "🎈",
+    "🎉",
+    "?"
+  ],
+  "options": {
+    "A": "🎈",
+    "B": "🎉",
+    "C": "🎊"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe91e"
+  },
+  "question": "Select the missing letter:",
+  "sequence": [
+    "T",
+    "R",
+    "P",
+    "N",
+    "?"
+  ],
+  "options": {
+    "A": "L",
+    "B": "K",
+    "C": "J"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe91f"
+  },
+  "question": "Find the missing number:",
+  "sequence": [
+    9,
+    18,
+    27,
+    36,
+    "?"
+  ],
+  "options": {
+    "A": 45,
+    "B": 54,
+    "C": 63
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe920"
+  },
+  "question": "What comes next?",
+  "sequence": [
+    "🚴",
+    "🏇",
+    "🚴",
+    "🏇",
+    "?"
+  ],
+  "options": {
+    "A": "🚴",
+    "B": "🏇",
+    "C": "🏂"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe921"
+  },
+  "question": "What comes next?",
+  "sequence": [
+    "🌍",
+    "🌕",
+    "🌍",
+    "🌕",
+    "?"
+  ],
+  "options": {
+    "A": "🌍",
+    "B": "🌕",
+    "C": "⭐"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe922"
+  },
+  "question": "Select the missing number:",
+  "sequence": [
+    5,
+    10,
+    20,
+    40,
+    "?"
+  ],
+  "options": {
+    "A": 80,
+    "B": 85,
+    "C": 90
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe923"
+  },
+  "question": "Find the missing symbol:",
+  "sequence": [
+    "🔄",
+    "⏭️",
+    "🔄",
+    "⏭️",
+    "?"
+  ],
+  "options": {
+    "A": "🔄",
+    "B": "⏭️",
+    "C": "⏯️"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe924"
+  },
+  "question": "Which letter comes next?",
+  "sequence": [
+    "F",
+    "H",
+    "J",
+    "L",
+    "?"
+  ],
+  "options": {
+    "A": "N",
+    "B": "M",
+    "C": "O"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe925"
+  },
+  "question": "What comes next in the number series?",
+  "sequence": [
+    3,
+    9,
+    27,
+    81,
+    "?"
+  ],
+  "options": {
+    "A": 243,
+    "B": 162,
+    "C": 324
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe926"
+  },
+  "question": "Find the missing number:",
+  "sequence": [
+    8,
+    16,
+    32,
+    64,
+    "?"
+  ],
+  "options": {
+    "A": 128,
+    "B": 256,
+    "C": 512
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe927"
+  },
+  "question": "What comes next?",
+  "sequence": [
+    "🟢",
+    "🔵",
+    "🟢",
+    "🔵",
+    "?"
+  ],
+  "options": {
+    "A": "🟢",
+    "B": "🔵",
+    "C": "🟠"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe928"
+  },
+  "question": "Which shape comes next?",
+  "sequence": [
+    "🔶",
+    "🔲",
+    "🔶",
+    "🔲",
+    "?"
+  ],
+  "options": {
+    "A": "🔶",
+    "B": "🔲",
+    "C": "🔷"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe929"
+  },
+  "question": "Find the missing emoji:",
+  "sequence": [
+    "🦊",
+    "🐻",
+    "🦊",
+    "🐻",
+    "?"
+  ],
+  "options": {
+    "A": "🦊",
+    "B": "🐻",
+    "C": "🐯"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe92a"
+  },
+  "question": "What comes next in the pattern?",
+  "sequence": [
+    "🛑",
+    "🚦",
+    "🛑",
+    "🚦",
+    "?"
+  ],
+  "options": {
+    "A": "🛑",
+    "B": "🚦",
+    "C": "🚧"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe92b"
+  },
+  "question": "What comes next?",
+  "sequence": [
+    "🍉",
+    "🍒",
+    "🍉",
+    "🍒",
+    "?"
+  ],
+  "options": {
+    "A": "🍉",
+    "B": "🍒",
+    "C": "🍎"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe92c"
+  },
+  "question": "Select the next number:",
+  "sequence": [
+    4,
+    12,
+    36,
+    108,
+    "?"
+  ],
+  "options": {
+    "A": 324,
+    "B": 216,
+    "C": 432
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe92d"
+  },
+  "question": "Find the missing symbol:",
+  "sequence": [
+    "🔴",
+    "⚪",
+    "🔴",
+    "⚪",
+    "?"
+  ],
+  "options": {
+    "A": "🔴",
+    "B": "⚪",
+    "C": "🔵"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe92e"
+  },
+  "question": "Which letter comes next?",
+  "sequence": [
+    "Z",
+    "X",
+    "V",
+    "T",
+    "?"
+  ],
+  "options": {
+    "A": "R",
+    "B": "Q",
+    "C": "S"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe92f"
+  },
+  "question": "Select the missing number:",
+  "sequence": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    "?"
+  ],
+  "options": {
+    "A": 32,
+    "B": 64,
+    "C": 128
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe930"
+  },
+  "question": "Find the missing shape:",
+  "sequence": [
+    "⬛",
+    "⬜",
+    "⬛",
+    "⬜",
+    "?"
+  ],
+  "options": {
+    "A": "⬛",
+    "B": "⬜",
+    "C": "🟨"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe931"
+  },
+  "question": "What comes next?",
+  "sequence": [
+    "🐝",
+    "🦋",
+    "🐝",
+    "🦋",
+    "?"
+  ],
+  "options": {
+    "A": "🐝",
+    "B": "🦋",
+    "C": "🐞"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe932"
+  },
+  "question": "Select the next letter:",
+  "sequence": [
+    "B",
+    "E",
+    "H",
+    "K",
+    "?"
+  ],
+  "options": {
+    "A": "N",
+    "B": "M",
+    "C": "O"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe933"
+  },
+  "question": "Which shape comes next?",
+  "sequence": [
+    "🔺",
+    "🔶",
+    "🔺",
+    "🔶",
+    "?"
+  ],
+  "options": {
+    "A": "🔺",
+    "B": "🔶",
+    "C": "🔷"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe934"
+  },
+  "question": "Find the missing number:",
+  "sequence": [
+    11,
+    22,
+    44,
+    88,
+    "?"
+  ],
+  "options": {
+    "A": 176,
+    "B": 132,
+    "C": 264
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe935"
+  },
+  "question": "What comes next?",
+  "sequence": [
+    "💙",
+    "💛",
+    "💙",
+    "💛",
+    "?"
+  ],
+  "options": {
+    "A": "💙",
+    "B": "💛",
+    "C": "❤️"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe936"
+  },
+  "question": "Select the missing letter:",
+  "sequence": [
+    "M",
+    "K",
+    "I",
+    "G",
+    "?"
+  ],
+  "options": {
+    "A": "E",
+    "B": "D",
+    "C": "F"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe937"
+  },
+  "question": "Find the missing emoji:",
+  "sequence": [
+    "🎵",
+    "🎶",
+    "🎵",
+    "🎶",
+    "?"
+  ],
+  "options": {
+    "A": "🎵",
+    "B": "🎶",
+    "C": "🎤"
+  },
+  "answer": "A"
+},
+{
+  "_id": {
+    "$oid": "67cf14734d597d63901fe938"
+  },
+  "question": "Which number comes next?",
+  "sequence": [
+    64,
+    32,
+    16,
+    8,
+    "?"
+  ],
+  "options": {
+    "A": 4,
+    "B": 2,
+    "C": 1
+  },
+  "answer": "A"
+}]

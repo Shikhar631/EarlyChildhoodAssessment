@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HomePage</title>
+    <style>
+      /* Smooth transition for scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* General Styles */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Header */
+      header {
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 15px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.3s ease-in-out;
+      }
+
+      header img {
+        width: 80px;
+      }
+
+      nav {
+        display: flex;
+        gap: 20px;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+        transition: all 0.3s ease-in-out;
+      }
+
+      nav a:hover {
+        color: #ffa500;
+      }
+
+      .login-btn {
+        background: #ffa500;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .login-btn:hover {
+        background: #ff9100;
+        transform: scale(1.05);
+        color: white;
+      }
+
+      /* Hero Section */
+      .hero {
+        text-align: center;
+        padding: 80px 20px;
+        height: 55vh;
+        margin-bottom: 48px;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .hero span {
+        color: #ffa500;
+      }
+
+      .hero p {
+        font-size: 18px;
+        color: #666;
+        margin-top: 10px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-buttons {
+        margin-top: 20px;
+      }
+
+      .hero-buttons a {
+        display: inline-block;
+        margin: 10px;
+        padding: 12px 24px;
+        font-size: 16px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .hero-buttons .get-started {
+        background: #ffa500;
+        color: white;
+      }
+
+      .hero-buttons .get-started:hover {
+        background:#ff9100;
+        transform: scale(1.05);
+      }
+
+      .hero-buttons .learn-more {
+        border: 2px solid #ffa500;
+        color: #ffa500;
+      }
+
+      .hero-buttons .learn-more:hover {
+        background: #ffa500;
+        color: white;
+        transform: scale(1.05);
+      }
+
+      /* About Section */
+      #about {
+        height: 100%;
+        max-width: 100%;
+        margin-top: 0;
+        margin-bottom: 0;
+        background: rgb(255, 162, 0);
+        padding: 5px;
+        align-items: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+        padding-bottom: 20px;
+      }
+
+      #about h2,
+      h3 {
+        font-size: 36px;
+        text-align: center;
+        color: #ffffff;
+        font-weight: bold;
+      }
+
+      #about p {
+        font-size: 16px;
+        color: #ffffff;
+        margin-top: 5px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      }
+
+      #about ul {
+        padding-left: 20px;
+      }
+
+      #about ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer {
+        font-size: 14px;
+        color: #888;
+        text-align: center;
+      }
+      /* Responsive */
+      @media (max-width: 768px) {
+        header {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        nav {
+          margin-top: 10px;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .hero h1 {
+          font-size: 30px;
+        }
+
+        .hero p {
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <img
+        src="{{ url_for('static', filename='images/logo.jpeg') }}"
+        alt="Logo"
+      />
+      <h1>Early Childhood Assessment</h1>
+      <nav>
+        <!-- <a href="#">Home</a>
+            <a href="#about">About</a> -->
+            
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1>
+        Early Childhood Development Assessment – <br />Unlock Your Child’s
+        Potential!<br /><span>Identify, Support, and Empower Young Minds</span>
+      </h1>
+      <p>
+        Every child is unique, and early childhood development plays a crucial
+        role in shaping their future. Our scientifically designed Early
+        Childhood Development Assessment helps parents, educators, and
+        specialists understand a child’s cognitive, emotional, and social growth
+        at an early stage.
+      </p>
+      <div class="hero-buttons">
+        <a href="/onboarding" class="get-started">Get Started</a>
+        <a href="#about" class="learn-more">Learn More</a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <h2>Why Early Assessment Matters?</h2>
+      <p>Detect potential learning and developmental challenges early</p>
+      <p>Provide tailored support for cognitive, language, and social skills</p>
+      <p>Build a strong foundation for lifelong learning</p>
+      <p>Empower parents and educators with personalized insights</p>
+
+      <h3>How It Works?</h3>
+      <p>
+        <strong>STEP 1:</strong> Answer fun & engaging questions tailored to
+        your child’s age
+      </p>
+      <p>
+        <strong>STEP 2:</strong> Our AI-driven system analyzes responses and
+        behavioral patterns
+      </p>
+      <p>
+        <strong>STEP 3:</strong> Receive a detailed report with insights &
+        recommendations
+      </p>
+
+      <h3>Our Mission</h3>
+      <p>
+        We believe that every child deserves the right support to thrive. By
+        identifying learning strengths and challenges early, we help children
+        develop confidence, resilience, and a love for learning.
+      </p>
+    </section>
+
+  </body>
+</html>
