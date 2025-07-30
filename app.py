@@ -9,14 +9,14 @@ import matplotlib.pyplot as plt
 import json
 import matplotlib
 from io import BytesIO
+import uuid
+
 matplotlib.use("Agg")
-from fpdf import FPDF
 
 load_dotenv()
 app = Flask(__name__)
 
-# Load JSON data from files
-load_dotenv()
+# MongoDB setup
 client = MongoClient("mongodb+srv://diya:diya@cluster0.mgkw8.mongodb.net/")
 db = client["Dyslexia"]
 
@@ -29,11 +29,9 @@ def get_or_create_collection(db, collection_name):
 questions_collection = get_or_create_collection(db, "Assessment")
 patterns_collection = get_or_create_collection(db, "Pattern")
 
-
-# AI SUGGESTIONS
+# Gemini setup
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 genai.configure(api_key=GEMINI_API_KEY)
-
 
 def generate_graph(scores):
     plt.figure(figsize=(6, 4))
@@ -44,11 +42,11 @@ def generate_graph(scores):
     plt.xlabel("Assessment Types")
     plt.ylabel("Scores")
     plt.title("Assessment Scores")
-    
-    graph_path = "temp_graph.png"  # Save as file
+
+    graph_path = f"static/temp_graph_{uuid.uuid4()}.png"
     plt.savefig(graph_path, format="png")
-    plt.close()  
-    return graph_path  # Return file path
+    plt.close()
+    return graph_path
 
 def generate_ai_suggestion(scores):
     prompt = f"""
@@ -67,57 +65,45 @@ def generate_ai_suggestion(scores):
     Strengths & Areas for Improvement: Highlight the child's strengths and identify areas where they may need additional support.
     Personalized Recommendations: Provide engaging and practical activities to help improve areas where the child may be struggling. Keep the recommendations fun and age-appropriate.
     Motivational Encouragement: End the report with a positive and motivating message to encourage continued learning and growth.
-    Tone:
-    Use an encouraging and supportive tone.
-    Keep the feedback constructive and uplifting to boost confidence.
-    Offer actionable and enjoyable strategies for improvement.
 
     Do not include the child's name in the report. Instead, refer to the child as 'the child' or 'they'. Also don't generate any special characters in the report.
     """
     model = genai.GenerativeModel("models/gemini-1.5-pro")
-    response = model.generate_content(prompt)
-    return response.text.strip()
-
-
-    print(repr(scores_data))  
-    print(repr(ai_suggestion))
-
+    try:
+        response = model.generate_content(prompt)
+        return response.text.strip()
+    except Exception as e:
+        print("Gemini API Error:", str(e))
+        return "Unable to generate AI suggestions due to an error."
 
 def generate_pdf(scores, ai_suggestion):
     pdf = FPDF()
     pdf.add_page()
-
-    # Use a Unicode-compatible font  
-    pdf.set_font("Arial", "", 12)  
-
+    pdf.set_font("Arial", "", 12)
     pdf.set_auto_page_break(auto=True, margin=15)
 
-    # Use UTF-8 text
     safe_text = ai_suggestion.encode("utf-8", "ignore").decode("utf-8")
 
-    # Logo
     logo_path = "static/images/logo.jpeg"
-    pdf.image(logo_path, x=80, y=10, w=30)
-    pdf.ln(30)
+    if os.path.exists(logo_path):
+        pdf.image(logo_path, x=80, y=10, w=30)
+        pdf.ln(30)
 
-    # Title
     pdf.set_font("Arial", style='B', size=16)
     pdf.cell(200, 10, "Early Childhood Development Assessment Report", ln=True, align='C')
     pdf.ln(10)
 
-    # Assessment Scores Section
     pdf.set_font("Arial", "", 12)
     pdf.cell(0, 10, "Assessment Scores", ln=True, align='L')
-    pdf.cell(190, 0, "", ln=True, border="T")  
+    pdf.cell(190, 0, "", ln=True, border="T")
     pdf.ln(5)
 
     pdf.set_font("Arial", size=10)
     for key, value in scores.items():
-        if value != "abc123":  
+        if value != "abc123":
             pdf.cell(0, 8, f"{key}: {str(value)}", ln=True)
     pdf.ln(10)
 
-    # AI Suggestions (Markdown Support)
     markdown_lines = ai_suggestion.split("\n")
     for line in markdown_lines:
         if line.startswith("# "):
@@ -128,57 +114,58 @@ def generate_pdf(scores, ai_suggestion):
             pdf.cell(0, 8, line[3:], ln=True)
         else:
             font_style = ""
-            if "***" in line:  
+            if "***" in line:
                 font_style = "BI"
                 line = line.replace("***", "")
-            elif "**" in line:  
+            elif "**" in line:
                 font_style = "B"
                 line = line.replace("**", "")
-            elif "*" in line:  
+            elif "*" in line:
                 font_style = "I"
                 line = line.replace("*", "")
-
             pdf.set_font("Arial", font_style, 10)
             pdf.multi_cell(0, 7, line)
         pdf.ln(2)
 
-    # Graph Image
     pdf.ln(10)
     pdf.cell(0, 10, "Performance Graph:", ln=True)
-    graph_path = generate_graph(scores)  
+    graph_path = generate_graph(scores)
     pdf.image(graph_path, x=30, y=None, w=150)
 
-    # Save PDF
-    pdf_path = "Early_Childhood_Assessment_Report.pdf"
+    pdf_path = f"static/reports/Assessment_Report_{uuid.uuid4()}.pdf"
     pdf.output(pdf_path, "F")
+
+    if os.path.exists(graph_path):
+        os.remove(graph_path)
 
     return pdf_path
 
-
-
-@app.route("/generate-report", methods=["POST","GET"])
+@app.route("/generate-report", methods=["POST", "GET"])
 def generate_report():
-    print("Received request")  # Check if this function runs
+    print("Received request")
 
-    data = request.get_json()  # Get JSON data from request
-    print("Raw data received:", data)  # Debugging output
-
+    data = request.get_json(silent=True)
     if not data:
-        return jsonify({"error": "No JSON data received"}), 400
+        data = request.form.to_dict(flat=True)
 
-    scores_data = data.get("scores")  # Extract scores
-    print("Extracted scores:", scores_data)  # Debugging output
+    print("Raw data received:", data)
+
+    try:
+        scores_data = data.get("scores")
+        if isinstance(scores_data, str):
+            scores_data = json.loads(scores_data)
+    except Exception as e:
+        return jsonify({"error": "Invalid or malformed scores"}), 400
 
     if not scores_data:
-        return jsonify({"error": "No scores found"}), 400
+        return jsonify({"error": "No scores provided"}), 400
 
-    # Generate AI suggestion and PDF (if scores are valid)
     ai_suggestion = generate_ai_suggestion(scores_data)
     pdf_path = generate_pdf(scores_data, ai_suggestion)
 
     return send_file(pdf_path, as_attachment=True)
 
-
+# Other routes
 @app.route('/activity')
 def activity():
     return render_template('activity.html')
@@ -203,18 +190,21 @@ def landing():
 def onboarding():
     return render_template('onboarding.html')
 
+@app.route('/report')
+def report():
+    return render_template('report.html')
+
 @app.route('/get_questions')
 def get_questions():
-    questions_collection = list(db.Assessment.find({}, {"_id": 0})) 
-    shuffled_questions = random.sample(questions_collection, min(10, len(questions_collection)))  
+    questions_collection = list(db.Assessment.find({}, {"_id": 0}))
+    shuffled_questions = random.sample(questions_collection, min(10, len(questions_collection)))
     return jsonify(shuffled_questions)
-
 
 @app.route('/get_patterns')
 def get_patterns():
-    patterns_collection = list(db.Pattern.find({}, {"_id": 0})) 
+    patterns_collection = list(db.Pattern.find({}, {"_id": 0}))
     shuffled_patterns = random.sample(patterns_collection, min(10, len(patterns_collection)))
     return jsonify(shuffled_patterns)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
